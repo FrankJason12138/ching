@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>3D Chinese Coin Flip</title>
+    <style>
+        body { margin: 0; }
+        canvas { display: block; }
+    </style>
+</head>
+<body>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/three@0.132.2/examples/js/loaders/GLTFLoader.js"></script>
+
+    <script>
+        let scene, camera, renderer, coin;
+        let flipAngle = 0;
+
+        // 初始化场景
+        function init() {
+            scene = new THREE.Scene();
+            camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
+            renderer = new THREE.WebGLRenderer();
+            renderer.setSize(window.innerWidth, window.innerHeight);
+            document.body.appendChild(renderer.domElement);
+
+            // 创建光源
+            const light = new THREE.AmbientLight(0x404040, 3); // 环境光
+            scene.add(light);
+
+            const directionalLight = new THREE.DirectionalLight(0xffffff, 1); // 定向光
+            directionalLight.position.set(10, 10, 10);
+            scene.add(directionalLight);
+
+            // 加载GLB模型
+            const loader = new THREE.GLTFLoader();
+            loader.load('chinese_coin.glb', function (gltf) {
+                coin = gltf.scene;
+                coin.scale.set(0.5, 0.5, 0.5); // 缩放模型
+                scene.add(coin);
+                coin.position.set(0, 0, 0);
+                camera.position.z = 3;
+                animate();
+            });
+        }
+
+        // 动画函数
+        function animate() {
+            requestAnimationFrame(animate);
+            if (coin) {
+                coin.rotation.y += 0.01; // 模型旋转动画
+            }
+            renderer.render(scene, camera);
+        }
+
+        // 随机翻动模型
+        function flipCoin() {
+            const randomSide = Math.random() > 0.5 ? 1 : -1;
+            flipAngle = Math.PI * randomSide; // 180度翻转
+            if (coin) {
+                coin.rotation.y = flipAngle;
+            }
+        }
+
+        // 监听点击事件触发翻转
+        window.addEventListener('click', flipCoin);
+
+        // 初始化场景
+        init();
+    </script>
+</body>
+</html>
