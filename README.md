@@ -35,8 +35,8 @@
 
 ```bash
 # 克隆项目
-git clone https://github.com/your-username/iching-divination.git
-cd iching-divination
+git clone https://github.com/FrankJason12138/ching.git
+cd ching
 
 # 启动本地服务器（任选其一）
 python -m http.server 8080
@@ -52,7 +52,7 @@ open http://localhost:8080
 ### 文件结构
 
 ```
-iching-divination/
+ching/
 ├── index.html       # 主文件，含全部逻辑
 ├── coin.glb         # 开元通宝 3D 铜钱模型（CC BY-NC）
 ├── true.png         # 神龟图片
