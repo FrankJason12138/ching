@@ -24,7 +24,6 @@
 ## 📸 预览
 
 >![屏幕截图 2026-02-26 124943](https://github.com/user-attachments/assets/081d44cf-f825-49b2-9116-fb64cd0ab11a)
->![屏幕截图 2026-02-26 125003](https://github.com/user-attachments/assets/d66484fe-c7b5-4f2b-9c78-7e532994be34)
 
 
 ---
